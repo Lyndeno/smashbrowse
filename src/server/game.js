@@ -12,13 +12,14 @@ class Game {
     setInterval(this.update.bind(this), 1000 / 60);
   }
 
-  addPlayer(socket, username) {
+  addPlayer(socket, username, numberOfPlayers) {
+    console.log(`socket: ${socket}`);
     this.sockets[socket.id] = socket;
-
+    
     // Generate a position to start this player at.
     const x = Constants.MAP_SIZE * (0.25 + Math.random() * 0.5);
     const y = Constants.MAP_SIZE * (0.25 + Math.random() * 0.5);
-    this.players[socket.id] = new Player(socket.id, username, x, y);
+    this.players[socket.id] = new Player(socket.id, username, numberOfPlayers);
   }
 
   removePlayer(socket) {
@@ -26,11 +27,37 @@ class Game {
     delete this.players[socket.id];
   }
 
-  handleInput(socket, dir) {
+  handleDirection(socket, dir) {
     if (this.players[socket.id]) {
+      console.log(`handleDirection in game.js - if statement true! dir=${dir}`);
       this.players[socket.id].setDirection(dir);
     }
   }
+  handleSpeed(socket, speed) {
+    if (this.players[socket.id]) {
+      console.log(`handleSpeed in game.js - if statement true! speed=${speed}`);
+      this.players[socket.id].setSpeed(speed);
+    }
+  }
+  changeFloorGame(socket, deltaHeight) {
+    if (this.players[socket.id]) {
+      this.players[socket.id].changeFloorPlayer(deltaHeight);
+    }
+  }
+  // leftSpeed(speed) {
+  //   console.log(`leftSpeed in game.js. - if statement true! speed=${speed}`);
+  //   game.leftSpeed(this, speed);
+  // }
+  
+  // zeroSpeed(speed) {
+  //   console.log(`zeroSpeed in game.js. - if statement true! speed=${speed}`);
+  //   game.zeroSpeed(this, speed);
+  // }
+  
+  // rightSpeed(speed) {
+  //   console.log(`rightSpeed in game.js. - if statement true! speed=${speed}`);
+  //   game.rightSpeed(this, speed);
+  // }
 
   update() {
     // Calculate time elapsed
@@ -51,10 +78,10 @@ class Game {
     // Update each player
     Object.keys(this.sockets).forEach(playerID => {
       const player = this.players[playerID];
-      const newBullet = player.update(dt);
-      if (newBullet) {
-        this.bullets.push(newBullet);
-      }
+      player.update(dt);
+      // if (newBullet) {
+      //   this.bullets.push(newBullet);
+      // }
     });
 
     // Apply collisions, give players score for hitting bullets
@@ -99,7 +126,7 @@ class Game {
 
   createUpdate(player, leaderboard) {
     const nearbyPlayers = Object.values(this.players).filter(
-      p => p !== player && p.distanceTo(player) <= Constants.MAP_SIZE / 2,
+      p => p !== player && p.distanceTo(player) <= Constants.MAP_SIZE * 2,
     );
     const nearbyBullets = this.bullets.filter(
       b => b.distanceTo(player) <= Constants.MAP_SIZE / 2,

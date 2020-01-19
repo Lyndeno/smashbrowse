@@ -55,7 +55,7 @@ export function getCurrentState() {
 
   const base = getBaseUpdate();
   const serverTime = currentServerTime();
-
+  
   // If base is the most recent update we have, use its state.
   // Otherwise, interpolate between its state and the state of (base + 1).
   if (base < 0 || base === gameUpdates.length - 1) {
@@ -80,7 +80,8 @@ function interpolateObject(object1, object2, ratio) {
   const interpolated = {};
   Object.keys(object1).forEach(key => {
     if (key === 'direction') {
-      interpolated[key] = interpolateDirection(object1[key], object2[key], ratio);
+      interpolated[key] = 0;//interpolateDirection(object1[key], object2[key], ratio);
+      // console.log(`interpolateDirection(object1[key], object2[key], ratio): ${interpolateDirection(object1[key], object2[key], ratio)}`);
     } else {
       interpolated[key] = object1[key] + (object2[key] - object1[key]) * ratio;
     }

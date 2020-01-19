@@ -35,5 +35,23 @@ export const play = username => {
 };
 
 export const updateDirection = throttle(20, dir => {
-  socket.emit(Constants.MSG_TYPES.INPUT, dir);
+  socket.emit(Constants.MSG_TYPES.DIRECTION, dir);
+});
+
+export const updateSpeed = throttle(20, speed => {
+  // console.log(`Updating speed to ${speed} in networking.js`);
+  if (speed < 0)
+    socket.emit(Constants.MSG_TYPES.LEFTSPEED, speed);
+  else if (speed == 0)
+    socket.emit(Constants.MSG_TYPES.ZEROSPEED, speed);
+  else if (speed > 0)
+    socket.emit(Constants.MSG_TYPES.RIGHTSPEED, speed);
+});
+
+export const upFloor = throttle(20, deltaHeight => {
+  socket.emit("upfloor", deltaHeight);
+});
+
+export const downFloor = throttle(20, deltaHeight => {
+  socket.emit("downfloor", deltaHeight);
 });

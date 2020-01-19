@@ -10,13 +10,26 @@ module.exports = Object.freeze({
   
     SCORE_BULLET_HIT: 20,
     SCORE_PER_SECOND: 1,
+
+    FLOOR_HEIGHT: 100,
+    FLOOR_WIDTH: 500,
+    FLOOR_OFFSET: 15,
+
+    PLAYER_HEIGHT:  64,
+    PLAYER_WIDTH: 64,
+
+    // WEAPON_NAME_ARRAY = ["hammer", "bat", "axe", "mace", "maul"],
   
-    MAP_SIZE: 3000,
+    MAP_SIZE: 700,
     MSG_TYPES: {
       JOIN_GAME: 'join_game',
       GAME_UPDATE: 'update',
-      INPUT: 'input',
+      LEFTSPEED: 'leftspeed',
+      ZEROSPEED: 'zerospeed',
+      RIGHTSPEED: 'rightspeed',
+      DIRECTION: 'direction',
       GAME_OVER: 'dead',
+      DISCONNECT: 'disconnect'
     },
   });
   
