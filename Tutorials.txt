@@ -1,0 +1,14 @@
+Multiplayer web browser game:
+    https://hackernoon.com/how-to-build-a-multiplayer-browser-game-4a793818c29b
+
+Multiplayer .io web game
+    https://victorzhou.com/blog/build-an-io-game-part-1/
+    https://victorzhou.com/blog/build-an-io-game-part-2/
+
+Socket.io setup urls:
+    https://socket.io/get-started/chat/
+    https://socket.io/get-started/chat/#Integrating-Socket-IO
+    https://github.com/socketio/socket.io-client
+    https://github.com/socketio/socket.io
+    https://socket.io/docs/client-api/
+    https://socket.io/docs/server-api/

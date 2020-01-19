@@ -1,0 +1,15 @@
+Frontend
+    JavaScript
+
+Backend
+    C++
+    Libuv - asynchronous IO cross-platform
+
+
+Tools
+    TODO: Express
+Websocket Library:
+    TODO: socket.io
+Module Bundler:
+    TODO: WebPack
+    TODO: websocketpp? - C++ library to implement Websocket Library

@@ -1,11 +1,6 @@
 NPM 6.13.4
-    https://hackernoon.com/how-to-build-a-multiplayer-browser-game-4a793818c29b
-
-NPM Commands:
-    npm install express@4.15.2
-
-
 .NET Core 3.1.100
 
-
-
+Stuff I installed:
+pm2 - sudo npm install -g pm2
+npm install express --save
